@@ -164,8 +164,8 @@ You will need the following things properly installed on your computer.
 *  The entry point into the application or the equivalent of index.html is in  app/templates/application.hbs. The extension .hbs denotes that this ia handlebar template. This template contains everything in between <body> tags, of a static html page.
 
 *	Edit app/templates/application.hbs
-	Replce the file contents with the following content:
-
+	Replace the file contents with the following content:
+~~~html
     <section id="todoapp">
       <header id="header">
         <h1>todos</h1>
@@ -212,7 +212,7 @@ You will need the following things properly installed on your computer.
         </button>
       </footer>
     </section>
-
+~~~
 * Replace the content of app/styles/app.css with [stylesheet](http://emberjs.com.s3.amazonaws.com/getting-started/style.css).
 * Create a new subdirectory public/assets and place the file [backgroud image](http://emberjs.com.s3.amazonaws.com/getting-started/bg.png)
 * localhost:4200 would have got refreshed on otw own and you should get the following screen:
