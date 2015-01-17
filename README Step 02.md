@@ -165,7 +165,7 @@ You will need the following things properly installed on your computer.
 
 *	Edit app/templates/application.hbs
 	Replace the file contents with the following content:
-
+		```html
     <section id="todoapp">
       <header id="header">
         <h1>todos</h1>
@@ -216,7 +216,7 @@ You will need the following things properly installed on your computer.
 		<footer id="info">
 			<p>Double-click to edit a todo</p>
 		</footer> 
-
+		```
 		* Replace the content of app/styles/app.css with [stylesheet](http://emberjs.com.s3.amazonaws.com/getting-started/style.css).
 		* Create a new subdirectory public/assets and place the file [backgroud image](http://emberjs.com.s3.amazonaws.com/getting-started/bg.png)
 		* localhost:4200 would have got refreshed on its own and you should get the following screen:
@@ -228,6 +228,7 @@ Fig 6.
 The header, footer or any other static elements would remain in the application template. Additionally, we should have at least one {{outlet}}: a placeholder that the router will fill in with the appropriate template, based on the current URL. 
 
 Put the following contents in index.hbs
+		```html
     <section id="todoapp">
       <header id="header">
         <h1>todos</h1>
@@ -274,13 +275,14 @@ Put the following contents in index.hbs
         </button>
       </footer>
     </section>
-
+		```	
 	* Edit app/templates/application.hbs
+		```html
 		{{outlet}}
 
 		<footer id="info">
 			<p>Double-click to edit a todo</p>
 		</footer> 
-
+		```
 	* localhost:4200 would have got refreshed on its own and you should get the same earlier screen of Fig 6.
 
