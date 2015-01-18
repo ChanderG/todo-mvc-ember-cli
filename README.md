@@ -1,4 +1,4 @@
-# Todo-cli
+# Todo MVC in ember with ember-cli
 
 I am a new comer to Ember and have been keenly following the [todo mvc tutorial] (http://emberjs.com/guides/getting-started/) in emberjs.com. 
 Also came across nice tutorials on using ember-cli. 
@@ -305,4 +305,3 @@ app.import('bower_components/ember-localstorage-adapter/localstorage_adapter.js'
 	However this gives error. Even replacing bower_compnents/ with node_modules/ doesnot remove the error. Hence I have not modified the Brocfile.js and it works!
 
 ## Thanks. 
-I will try to update this with tests in my next attempt. 
