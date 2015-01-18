@@ -1,4 +1,4 @@
-# Todo-clite
+# Todo-cli
 
 I am a new comer to Ember and have been keenly following the [todo mvc tutorial] (http://emberjs.com/guides/getting-started/) in emberjs.com. 
 Also came across nice tutorials on using ember-cli. 
@@ -17,7 +17,7 @@ This document has evolved over multiple steps as envisaged in the [todo mvc tuto
 
 * [Step 05 - New Instance](https://github.com/govidat/todo-cli/commit/36f4c3f451a557cadce51d3c1e2178c1a29ea681)
 
-* [Step 06 - Deleting Model]()
+* [Step 06 - Deleting Model to end](https://github.com/govidat/todo-cli/commit/be29a45378d355687b40aaef236038fade8aa184)
 
 ## Prerequisites
 
@@ -56,6 +56,8 @@ You will need the following things properly installed on your computer.
 
 ## Step 01 - Initialize Repository
 
+* For a more detailed step by step flow pls refer README Step 01.md
+
 * Setting up the environment
 
 	As per links above ensure node, phantomjs and bower are installed. My versions are:
@@ -63,41 +65,7 @@ You will need the following things properly installed on your computer.
 	$ phantomjs -v	// 1.9.8
 	$ bower -v			// 1.3.12 
 
-	For installing phantomjs and other requirements, it is better to run command like:
-
-	$ npm install -g phantomjs
-
-	-g flag is used to make these commands globally available at the command line.
-
 * ember-cli
-
-	When I ran the following command I got an error:
-
-	$ npm install -g ember-cli
-
-	Error : npm ERR! Please try running this command again as root/Administrator.
-
-	I ran the following with partial success:
-
-	$ sudo npm install -g ember-cli  
-
-	I got an output like: 
-
-	npm WARN package.json ember-router-generator@0.1.0 No description
-	/usr/bin/ember -> /usr/lib/node_modules/ember-cli/bin/ember
-	ember-cli@0.1.5 /usr/lib/node_modules/ember-cli
-	├── js-string-escape@1.0.0
-	├── abbrev@1.0.5
-	├── exit@0.1.2
-	.....
-	
-	$ ember -v  // gave the following output
-
-	version: 0.1.5
-
-	Could not find watchman, falling back to NodeWatcher for file system events
-	node: 0.10.33
-	npm: 2.1.8
 
 * Steps to remove watchman error
 
@@ -105,196 +73,40 @@ You will need the following things properly installed on your computer.
   * [Part 1](http://discuss.emberjs.com/t/could-not-find-watchman-falling-back-to-nodewatcher-for-file-system-events/6873)
   * [Part 2](https://facebook.github.io/watchman/docs/install.html)
 
-	$ git clone https://github.com/facebook/watchman.git
-	Cloning into 'watchman'...
-	...
-
-	Checking connectivity... done.
-	$ cd watchman
-	$ ./autogen.sh
-	configure.ac:21: installing './compile'
-	...
-
-	$ ./configure
-	$ make
-	$ sudo make install
-
-	make[1]: Entering directory ...
-
-* $ ember -v
-
-	version: 0.1.5
-	node: 0.10.33
-	npm: 2.1.8
-
 * Create a new ember 'todo-cli' application
-
-	$ ember new todo-cli
-	this takes a few minutes...
-	Fig 2:
-	
-
-* Setting up the git-hub repository
-
-	$ cd todo-cli
-	$ git init
-	$ git add -A
-	$ git status
-
-	Fig 1
-
-	$ git commit -m "Initialize repository"
-	Fig 3
 
 * Run the ember server
 
-	$ ember server
-
 	In localhost:4200 you will be able to see the output as follows:
-	Fig 4
-
-* Bower dependencies
-
-	If you get any error due to bower dependencies, you may run the following command.
-
-	$ bower install
 
 ## Step 02 - Creating a static mockup
 
-*  The entry point into the application or the equivalent of index.html is in  app/templates/application.hbs. The extension .hbs denotes that this ia handlebar template. This template contains everything in between "<body>" tags, of a static html page.
+* For a more detailed step by step flow pls refer README Step 02.md
+
+*  The entry point into the application or the equivalent of index.html is in  app/templates/application.hbs. The extension .hbs denotes that this ia handlebar template. 
 
 *	Edit app/templates/application.hbs
-
-	Replace the file contents with the following content:
-	~~~html
-    <section id="todoapp">
-      <header id="header">
-        <h1>todos</h1>
-        <input type="text" id="new-todo" placeholder="What needs to be done?" />
-      </header>
-
-      <section id="main">
-        <ul id="todo-list">
-          <li class="completed">
-            <input type="checkbox" class="toggle">
-            <label>Learn Ember.js</label><button class="destroy"></button>
-          </li>
-          <li>
-            <input type="checkbox" class="toggle">
-            <label>...</label><button class="destroy"></button>
-          </li>
-          <li>
-            <input type="checkbox" class="toggle">
-            <label>Profit!</label><button class="destroy"></button>
-          </li>
-        </ul>
-
-        <input type="checkbox" id="toggle-all">
-      </section>
-
-      <footer id="footer">
-        <span id="todo-count">
-          <strong>2</strong> todos left
-        </span>
-        <ul id="filters">
-          <li>
-            <a href="all" class="selected">All</a>
-          </li>
-          <li>
-            <a href="active">Active</a>
-          </li>
-          <li>
-            <a href="completed">Completed</a>
-          </li>
-        </ul>
-
-        <button id="clear-completed">
-          Clear completed (1)
-        </button>
-      </footer>
-    </section>
-
-		<footer id="info">
-			<p>Double-click to edit a todo</p>
-		</footer> 
-~~~
 
 * Replace the content of app/styles/app.css with [stylesheet](http://emberjs.com.s3.amazonaws.com/getting-started/style.css).
 * Create a new subdirectory public/assets and place the file [backgroud image](http://emberjs.com.s3.amazonaws.com/getting-started/bg.png)
 * localhost:4200 would have got refreshed on its own and you should get the following screen:
 
-Fig 6.
 * Else you may stop the server (Ctrl C) and restart with $ ember server.
    
 * Introduce app/templates/index.hbs
 
 The header, footer or any other static elements would remain in the application template. Additionally, we should have at least one {{outlet}}: a placeholder that the router will fill in with the appropriate template, based on the current URL. 
 
-Put the following contents in index.hbs
+Put the contents in index.hbs
 
-~~~html
-
-    <section id="todoapp">
-      <header id="header">
-        <h1>todos</h1>
-        <input type="text" id="new-todo" placeholder="What needs to be done?" />
-      </header>
-
-      <section id="main">
-        <ul id="todo-list">
-          <li class="completed">
-            <input type="checkbox" class="toggle">
-            <label>Learn Ember.js</label><button class="destroy"></button>
-          </li>
-          <li>
-            <input type="checkbox" class="toggle">
-            <label>...</label><button class="destroy"></button>
-          </li>
-          <li>
-            <input type="checkbox" class="toggle">
-            <label>Profit!</label><button class="destroy"></button>
-          </li>
-        </ul>
-
-        <input type="checkbox" id="toggle-all">
-      </section>
-
-      <footer id="footer">
-        <span id="todo-count">
-          <strong>2</strong> todos left
-        </span>
-        <ul id="filters">
-          <li>
-            <a href="all" class="selected">All</a>
-          </li>
-          <li>
-            <a href="active">Active</a>
-          </li>
-          <li>
-            <a href="completed">Completed</a>
-          </li>
-        </ul>
-
-        <button id="clear-completed">
-          Clear completed (1)
-        </button>
-      </footer>
-    </section>
-~~~
 
 * Edit app/templates/application.hbs
-
-~~~html
-		{{outlet}}
-
-		<footer id="info">
-			<p>Double-click to edit a todo</p>
-		</footer> 
-~~~
 
 * localhost:4200 would have got refreshed on its own and you should get the same earlier screen of Fig 6.
 
 ## Step 03 - Adding the first route
+
+* For a more detailed step by step flow pls refer README Step 03.md
 
 * In the Ember Guide example, Adding the First Route and Template, a resource has been added to the router which corresponds to / URL and the template name is todos.
 
@@ -302,31 +114,20 @@ Put the following contents in index.hbs
 
 * ember generate resource todos 
 
-	Fig 7
-
 * Manually edit app/router.js file and add our resource:
-	~~~html
-	import Ember from "ember";
-	import config from "./config/environment";
 
-	var Router = Ember.Router.extend({
-	  location: config.locationType
-	});
-
-	Router.map(function() {
-	  this.resource("todos", { path: '/' });
-	});
-
-	export default Router;
-	~~~
 * localhost:4200 will now give only the footer.  
+
 * Initially the template was called index (app/templates/index.hbs) and it was corresponding to the default route indexRoute. Now, the route is todosRoute and the corresponding template expected is todos (app/templates/todos.hbs).
+
 * This todos.hbs has already been generated by our earlier generate command. But is does not have any content and just has {{outlet}}
 
 * Rename original index.hbs to todos.hbs 
 * Now localhost:4200 is back to normal
 
 ## Step 04 - Modeling Data/ Fixtures / Displaying complete state
+
+* For a more detailed step by step flow pls refer README Step 04.md
 
 * In this part we will do the Ember Guide example - Modeling Data, Using Fixtures and Displaying the Model Data
 
@@ -343,117 +144,28 @@ create app/adapter/application.js and introduce the following lines:
  
 	export default DS.FixtureAdapter.extend(); 
 
-Edit app/models/todo.js and change to the following:
-~~~html
-import DS from 'ember-data';
-
-var Todo = DS.Model.extend({
-	title: DS.attr('string'),
-	isCompleted: DS.attr('boolean')
-}); 
-
-Todo.reopenClass({
-	FIXTURES: [
-	{
-		id: 1,
-		title: 'Learn Ember.js',
-		isCompleted: true
-	},
-	{
-		id: 2,
-		title: '...',
-		isCompleted: false
-	},
-	{
-		id: 3,
-		title: 'Profit!',
-		isCompleted: false
-	}
-	]
-}); 
-
-export default Todo;
-~~~
+* Edit app/models/todo.js 
 
 * Displaying Model Data
 Already the route todos.js has been created in the background when we generated the resource todos.
 
-edit app/routes/todos.js and introduce two lines:
-now it should look like:
-~~~html
-import Ember from 'ember';
+* edit app/routes/todos.js
 
-export default Ember.Route.extend({
-	model: function() {
-		return this.store.find('todo');
-	} 
-});
-~~~
-Update the app/templates/todos.hbs and replace the static content with the following codes. It should read as :
-~~~html
-       <ul id="todo-list">
-          {{#each}}
-            <li>
-              <input type="checkbox" class="toggle">
-              <label>{{title}}</label><button class="destroy"></button>
-            </li>
-          {{/each}} 
-        </ul>
-~~~
+Update the app/templates/todos.hbs and replace the static content. 
+
 * Displaying Model's Complete State
-edit app/templates/todo.hbs and introduce {{bind-attr class="todo.isCompleted:completed"}} for <li>. It should read as :
-~~~html
-<li {{bind-attr class="isCompleted:completed"}}>
-~~~
-* localhost:4200 displays as earlier
+edit app/templates/todo.hbs and introduce {{bind-attr class="todo.isCompleted:completed"}} for <li>. 
 
 ## Step 05 - New Instance 
 
+* For a more detailed step by step flow pls refer README Step 05.md
+
 * edit app/templates/todo.hbs
-~~~html
-    <header id="header">
-        <h1>todos</h1>
-        {{input
-          type="text"
-          id="new-todo"
-          placeholder="What needs to be done?"
-          value=newTitle
-          action="createTodo"}}
-      </header>
-~~~
 
 $ ember generate controller todos
-* edit app/controllers/todos.js and it should read as 
-Note : Change Ember.Controller to Ember.ArrayController 
-~~~html
+* edit app/controllers/todos.js 
 
-import Ember from 'ember';
-
-export default Ember.ArrayController.extend({
-  actions: {
-    createTodo: function() {
-      // Get the todo title set by the "New Todo" text field
-      var title = this.get('newTitle');
-      if (!title.trim()) { return; }
-
-      // Create the new Todo model
-      var todo = this.store.createRecord('todo', {
-        title: title,
-        isCompleted: false
-      });
-
-      // Clear the "New Todo" text field
-      this.set('newTitle', '');
-
-      // Save the new model
-      todo.save();
-    }
-  }
-});
-~~~
 This controller will now respond to user action by using its newTitle property as the title of a new todo whose isCompleted property is false. Then it will clear its newTitle property which will synchronize to the template and reset the textfield. Finally, it persists any unsaved changes on the todo.
-
-You should now be able to add additional todos by entering a title in the <input> and hitting the <enter> key.
 
 * Marking a model as complete or incomplete
 
@@ -461,146 +173,39 @@ You should now be able to add additional todos by entering a title in the <input
 Note : Addition of itemController="todo" in first line
 Also todo.title. This is required to correctly get the item properties.
 
-~~~html
-          {{#each todo in model itemController="todo"}}
-            <li {{bind-attr class="isCompleted:completed"}}>
-              {{input type="checkbox" checked=todo.isCompleted class="toggle"}}
-              <label>{{todo.title}}</label><button class="destroy"></button>
-            </li>
-          {{/each}} 
-~~~
-
 $ ember generate controller todo
-* edit app/controllers/todos.js and it should read as 
+
+* edit app/controllers/todos.js
+
 Note : Change Ember.Controller to Ember.ObjectController 
 
-~~~html
-import Ember from 'ember';
-
-export default Ember.ObjectController.extend({
-  isCompleted: function(key, value){
-    var model = this.get('model');
-
-    if (value === undefined) {
-      // property being used as a getter
-      return model.get('isCompleted');
-    } else {
-      // property being used as a setter
-      model.set('isCompleted', value);
-      model.save();
-      return value;
-    }
-  }.property('model.isCompleted')
-
-});
-
-~~~
 * Displaying the number of Incomplete Todos
-* edit app/templates/todo.hbs
-~~~html
-	<span id="todo-count">
-          <strong>{{remaining}}</strong> {{inflection}} left
-    </span>
-~~~
-* edit app/controllers/todos.js and it should read as
-Note: Add a , at the end of actions: {}
-~~~html
-  remaining: function() {
-    return this.filterBy('isCompleted', false).get('length');
-  }.property('@each.isCompleted'),
 
-  inflection: function() {
-    var remaining = this.get('remaining');
-    return remaining === 1 ? 'item' : 'items';
-  }.property('remaining')
-~~~
+* edit app/templates/todo.hbs
+
+* edit app/controllers/todos.js 
 
 * Toggling between showing and editing status
+
 * edit app/templates/todo.hbs
-~~~html
-		<ul id="todo-list">
-          {{#each todo in model itemController="todo"}}
-            <li {{bind-attr class="todo.isCompleted:completed todo.isEditing:editing"}}>
-              {{#if todo.isEditing}}
-                <input class="edit">
-              {{else}}
-                {{input type="checkbox" checked=todo.isCompleted class="toggle"}}
-                <label {{action "editTodo" on="doubleClick"}}>{{todo.title}}</label><button class="destroy"></button>
-              {{/if}}  
-            </li>
-          {{/each}} 
-        </ul>
-~~~
 
 * Inside app/controllers/todo.js add the the matching logic: 
 Note : Pls note the , separator from previous content
 
-~~~html
-	....
-  }.property('model.isCompleted'),
-
-  actions: {
-    editTodo: function() {
-      this.set('isEditing', true);
-    }
-  },
-
-  isEditing: false
-
-~~~
 $ ember generate adapter/view/helper edit-todo did not work properly
+
 * Insert a file app/components/edit-todo.js
 
 * edit app/components/edit-todo.js
 * Refer : https://github.com/WMeldon/ember-cli-todos/blob/master/app/components/edit-todo.js
-~~~html
-import Ember from 'ember';
 
-export default Ember.TextField.extend({
-  didInsertElement: function() {
-    this.$().focus();
-    this.$().addClass('focus'); // headless testing is brittle
-  }
-
-});
-~~~
 * edit app/templates/todo.hbs
-~~~html
-              {{#if todo.isEditing}}
-                {{edit-todo class="edit" value=todo.title focus-out="acceptChanges" insert-newline="acceptChanges"}}
-              {{else}}
-~~~
 
 * edit app/controllers/todo.js and add...
-~~~html
-	...
-	actions: {
-    editTodo: function() {
-      this.set('isEditing', true);
-    },
-
-    acceptChanges: function() {
-      this.set('isEditing', false);
-
-      if (Ember.isEmpty(this.get('model.title'))) {
-        this.send('removeTodo');
-      } else {
-        this.get('model').save();
-      }
-    },
-
-    removeTodo: function () {
-      var todo = this.get('model');
-      todo.deleteRecord();
-      todo.save();
-    }
-  },
-  ...
- 
-
-~~~ml
 
 ## Step 06 - Deleting Model / Adding Child Routes ... upto last step
+
+* For a more detailed step by step flow pls refer README Step 06.md
 
 * Deleting Model
 
@@ -608,239 +213,67 @@ edit app/templates/todo.hbs
 
 In index.html update the static <button> element to include an {{action}} Handlebars helper:
 
-~~~html
-  <button {{action "removeTodo"}} class="destroy"></button>
-~~~
-
 This will call the removeTodo action defined already and will delete the todo locally and then persist this data change.
 
 * Adding Child Routes
 
-In app/templates/todo.hbs move the entire '<ul>'' of todos into a new template named app/templates/todos/index.hbs by adding a new Handlebars template "<script>" tag inside the "<body>" of the document:
-
 * Copy app/templates/todos.hbs to app/templates/todos/index.hbs
 
-* Edit app/templates/todos/index.hbs and retain only the following part:
-~~~html
-        <ul id="todo-list">
-          {{#each todo in model itemController="todo"}}
-           ...
-           ...
-           ... 
-          {{/each}} 
-        </ul>
-~~~
+* Edit app/templates/todos/index.hbs and retain only the required part:
 
-* Edit app/templates/todos.hbs and retain only the following part:
-~~~html
-      ...
-      ...
-      <section id="main">
-        {{outlet}}
-        <input type="checkbox" id="toggle-all">
-      </section>
-      ...
-      ...
-~~~
+* Edit app/templates/todos.hbs and retain only the required part:
 
 * Modify the router to accomodate child routes:
+
 * Edit app/router.js
-~~~html
-...
-Router.map(function() {
-  this.resource("todos", { path: '/' }, function () {
-    // additional child routes will go here later
-  });
-});
-...
-~~~
 
 * Note: The code mentmlioned for model has already been generated automatically when we generated resource todos. It is in app/routes/todos.js.
 
 When the application loads at the url '/' Ember.js will enter the todos route and render the todos template as before. It will also transition into the todos.hbs and fill the {{outlet}} in the todos template with the todos/index template.
 
 * Transitioning to show only incomplete todos
+
 * Edit app/todos.hbs
-~~~html
-<li>
-  <a href="all">All</a>
-</li>
-<li>
-  {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
-</li>
-<li>
-  <a href="completed">Completed</a>
-</li>
-~~~
 
 * edit app/router.js and include the child route active.
-~~~html
-.....
-Router.map(function() {
-  this.resource("todos", {
-    path: "/"
-  }, function() {
-    this.route("active");
-
-~~~
 
 * To create the relevant route active, we will use the ember-cli generate command. We need in a new subdirectory app/routes/todos/...
+
 $ ember generate route todos/active
-* edit app/routes/todos/active.js and it should read as follows:
-~~~html
-import Ember from 'ember';
 
-export default Ember.Route.extend({
-  model: function(){
-    return this.store.filter('todo', function(todo) {
-      return !todo.get('isCompleted');
-    });
-  },
-  renderTemplate: function(controller) {
-    this.render('todos/index', {controller: controller});
-  }
-  
-});
-
-~~~
+* edit app/routes/todos/active.js 
 
 The model data for this route is the collection of todos whose isCompleted property is false. When a todo's isCompleted property changes this collection will automatically update to add or remove the todo appropriately.
 
 * Transitioning to show only complete todos
   
 * Edit app/todos.hbs
-~~~html
-<li>
-  <a href="all">All</a>
-</li>
-<li>
-  {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
-</li>
-<li>
-  {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
-</li>
-~~~
-* edit app/router.js and include the child route active.
-~~~html
-.....
-Router.map(function() {
-  this.resource("todos", {
-    path: "/"
-  }, function() {
-    this.route("active");
-    this.route("completed");
 
-~~~
+* edit app/router.js and include the child route active.
 
 * To create the relevant route 'completed', we will use the ember-cli generate command. We need in a new subdirectory app/routes/todos/...
+
 $ ember generate route todos/completed
-* edit app/routes/todos/completed.js and it should read as follows:
-~~~html
-import Ember from 'ember';
 
-export default Ember.Route.extend({
-  model: function(){
-    return this.store.filter('todo', function(todo) {
-      return todo.get('isCompleted');
-    });
-  },
-  renderTemplate: function(controller) {
-    this.render('todos/index', {controller: controller});
-  }
-  
-});
-
-~~~
+* edit app/routes/todos/completed.js
 
 * Transitioning back to show all todos
+
 * Edit app/todos.hbs
-~~~html
-<li>
-  {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
-</li>
-<li>
-  {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
-</li>
-<li>
-  {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
-</li>
-~~~
 
 * Displaying a Button to Remove All Completed Todos
+
 * Edit app/todos.hbs
-~~~html
-{{#if hasCompleted}}
-  <button id="clear-completed" {{action "clearCompleted"}}>
-    Clear completed ({{completed}})
-  </button>
-{{/if}}
-~~~
 
 * edit app/controller/todos.js
-~~~html
-  ....
-  actions: {
-    createTodo: function() {
-      ....
-    },
-
-    clearCompleted: function() {
-      var completed = this.filterBy('isCompleted', true);
-      completed.invoke('deleteRecord');
-      completed.invoke('save');
-    }  
-
-  },
-
-  remaining: function() {
-    ...),
-
-  hasCompleted: function() {
-    return this.get('completed') > 0;
-  }.property('completed'),
-
-  completed: function() {
-    return this.filterBy('isCompleted', true).get('length');
-  }.property('@each.isCompleted')
-  
-
-~~~
 
 * Indicating When All Todos Are Complete
+
 * Edit app/todos.hbs
-~~~html
-...
-      <section id="main">
-        {{outlet}}
-          {{input type="checkbox" id="toggle-all" checked=allAreDone}}
-      </section>
-~~~
 
 * edit app/controller/todos.js
-~~~html
-  ....
-
-  remaining: function() {
-    ...),
-  allAreDone: function(key, value) {
-    return !!this.get('length') && this.isEvery('isCompleted');
-  }.property('@each.isCompleted')
-
-~~~
 
 * Toggling All Todos Between Complete and Incomplete
-* edit app/controller/todos.js
-~~~html
-...
 
-allAreDone: function(key, value) {
-  if (value === undefined) {
-    return !!this.get('length') && this.isEvery('isCompleted', true);
-  } else {
-    this.setEach('isCompleted', value);
-    this.invoke('save');
-    return value;
-  }
-}.property('@each.isCompleted')
-~~~
+* edit app/controller/todos.js
 
